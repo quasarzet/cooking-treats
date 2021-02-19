@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cook’s Treat</title>
+    <link rel="stylesheet" href="styles/styles.css" type="text/css">
+    <link rel="shortcut icon" type="image/jpg" href="styles/images/hat.png"/>
+</head>
+<body>
+
+<div class="body-wrapper">
+    <div class="logo-container">
+        <img src="styles/images/logo.png" alt="Logo">
+    </div>
+    <div class="message-container">
+        <p class="text">Welcome to Cook's Treat. Where you</br>will find hundreds of delicious recipes.</p>
+    </div>
+    <div class="input-container">
+        <input class="requested-recipe" type="text" placeholder="What's on your mind?"><button class="button-recipe"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 452.11 457.91">
+            <defs>
+              <style>
+                .a {
+                  fill: #616e7d;
+                }
+          
+                .b {
+                  fill: #82bfab;
+                }
+          
+                .c {
+                  fill: #aad4c8;
+                }
+              </style>
+            </defs>
+            <g>
+              <path class="a" d="M424.46,376.84l-93.92-93.91A179.67,179.67,0,0,0,362.09,182.4C362.83,82.57,282.21.75,182.39,0H181C82,0,.74,80.61,0,179.71A181,181,0,0,0,179.7,362.08h1.37a180.19,180.19,0,0,0,94.87-26.89l94,94-5.34-5.33,53.84-53Zm-241-78.76h-.91A117,117,0,0,1,66.42,180.2c.49-64,53-116.14,117-116.14h.89A117.16,117.16,0,0,1,300.44,182C300,246,247.47,298.08,183.46,298.08Z"/>
+              <path class="b" d="M379.86,439.1l12.83,13c3.74,3.8,8.93,5.8,15,5.8h0c9.77,0,20.95-5.26,29.9-14.09,15.09-14.87,19-34.53,9-44.75L429.4,381.69l0,0,.2.19h0l8.28,8.4-53.8,53Z"/>
+              <polygon class="c" points="429.36 381.73 424.46 376.84 418.46 370.84 364.62 423.85 369.96 429.18 375.52 434.76 379.59 438.82 379.86 439.1 384.07 443.31 437.87 390.31 429.59 381.91 429.56 381.92 429.36 381.73"/>
+            </g>
+        </svg></button>
+    </div>
+    <div class="popular-text-container">
+        <p class="text">Most popular:</p>
+    </div>
+    <div class="popular-items-container">
+        <div class="first-popular-item-container popular-item">
+            <img src="images/ham-hock.jpg" alt="Ham Hock">
+        </div>
+        <div class="second-popular-item-container popular-item">
+            <img src="images/beef-sunday-roast.jpg" alt="Beef Sunday Roast">
+        </div>
+        <div class="third-popular-item-container popular-item">
+            <img src="images/massaman-beef-curry.jpg" alt="Massaman Beef Curry">
+        </div>
+        <div class="fourth-popular-item-container popular-item">
+            <img src="images/tonkatsu-pork.jpg" alt="Tonkatsu Pork">
+        </div>
+    </div>
+
+    <!-- RESULTS OF THE QUERY -->
+    <div class="results-container"> 
+        <!-- <div class="result-image-container">
+            <img src="styles/images/beef-sunday-roast.jpg" alt="">
+        </div>
+        <div class="result-recipe-container">
+            <p class="result-recipe-text text">Name of the Dish</p>
+            <p class="result-recipe-text text">Preparation Time:</p>
+            <p class="result-recipe-text text">Description</p>
+            <p class="result-recipe-text text">Yields:</p>
+        </div> -->
+    </div>
+
+    <!-- OVERLAY WITH THE RECIPE RESULTS -->
+    <div class="overlay">
+        <div class="close-button-container"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520.71 520.71">
+            <defs>
+              <style>
+                .a {
+                  fill: #5a724f;
+                }
+              </style>
+            </defs>
+            <polygon class="a" points="520.71 70.71 450 0 260.36 189.65 70.71 0 0 70.71 189.65 260.36 0 450 70.71 520.71 260.36 331.07 450 520.71 520.71 450 331.07 260.36 520.71 70.71"/>
+            </svg>
+        </div>
+        <div class="recipe-container">
+            <div class="recipe-title-container">
+                <p class="recipe-title text">Recipe Title</p>
+                <p class="recipe-country text">World</p>
+            </div>
+                <div class="recipe-photo-container">
+                    <img src="" alt="">
+                </div>
+                <div class="ingredients-container">
+                    <p class="ingredients-title text">Ingredients:</p>
+                    <p class="ingredients-items"></p>
+                </div>
+                <div class="preparation-container">
+                    <p class="preparation-title text">Preparation:</p>
+                </div>
+        </div>
+    </div>
+
+    <div class="copyright-container">
+        <p class="copyright-text">All rights reserved - 2021</p>
+    </div>
+
+    
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="scripts/scripts.js"></script>
+</body>
+
+</html>

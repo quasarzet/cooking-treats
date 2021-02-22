@@ -7,6 +7,19 @@ html, body {
   overflow-x: hidden;
 }
 
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .body-wrapper {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -38,11 +51,15 @@ html, body {
   height: 100%;
 }
 
+.welcome-text {
+  width: 80vw;
+}
+
 .text {
   font-family: 'baskerville old face';
   font-size: 1.5em;
   text-align: center;
-  color: #86A877;
+  color: #0b3f0b;
   margin: 0;
 }
 
@@ -66,21 +83,30 @@ html, body {
 input::-webkit-input-placeholder {
   text-align: center;
   color: #a3a3a3;
+  padding-right: 5vw;
 }
 
 input:-ms-input-placeholder {
   text-align: center;
   color: #a3a3a3;
+  padding-right: 5vw;
 }
 
 input::-ms-input-placeholder {
   text-align: center;
   color: #a3a3a3;
+  padding-right: 5vw;
 }
 
 input::placeholder {
   text-align: center;
   color: #a3a3a3;
+  padding-right: 5vw;
+}
+
+input {
+  text-align: center;
+  padding-right: 5vw;
 }
 
 .button-recipe {
@@ -115,7 +141,7 @@ input::placeholder {
 }
 
 .results-container {
-  width: 60vw;
+  width: 70vw;
   margin: 2vh 0;
   padding: 0;
   border-radius: 10px;
@@ -125,7 +151,7 @@ input::placeholder {
 }
 
 .result-image-container {
-  width: 60vw;
+  width: 70vw;
   height: 30vh;
   border-radius: 10px;
   display: -webkit-box;
@@ -151,7 +177,7 @@ input::placeholder {
   position: relative;
   padding: 2vh 2vw;
   background-color: #71b871;
-  width: 60vw;
+  width: 70vw;
   height: 20vh;
   border-radius: 0 0 10px 10px;
 }
@@ -208,6 +234,7 @@ input::placeholder {
   background-color: #71b871;
   width: 70vw;
   height: 20vh;
+  margin: 0;
   border-radius: 0 0 10px 10px;
 }
 
@@ -217,6 +244,7 @@ input::placeholder {
   font-family: 'verdana';
   font-size: 1em;
   margin-top: 0;
+  width: 60vw;
 }
 
 .new-recipe-text {
@@ -224,6 +252,8 @@ input::placeholder {
   color: white;
   font-family: 'verdana';
   font-size: 0.8em;
+  width: 70vw;
+  padding: 1vh 2vw;
 }
 
 .new-recipe-hidden {
@@ -231,26 +261,33 @@ input::placeholder {
 }
 
 .overlay {
-  display: none;
   position: absolute;
   width: 85vw;
-  height: 85vh;
+  min-height: 85vh;
+  margin-top: 5vh;
   overflow-x: hidden;
+  overflow-y: scroll;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 2vh 3vw;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.8);
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
   border-radius: 10px;
+}
+
+.body-scroll-hide {
+  height: 100vh;
+  overflow-y: hidden;
+  position: fixed;
 }
 
 .close-button-container {
   width: 6vw;
   height: 6vw;
   position: fixed;
-  left: 85%;
-  top: 5%;
+  left: 88%;
+  top: 1%;
 }
 
 .recipe-container {
@@ -267,7 +304,13 @@ input::placeholder {
 }
 
 .recipe-title-container {
+  margin-top: 2vh;
   margin-bottom: 2vh;
+  width: 60vw;
+}
+
+.recipe-title {
+  font-size: 1.2em;
 }
 
 .recipe-photo-container {
@@ -281,23 +324,66 @@ input::placeholder {
 .recipe-photo-container img {
   width: 100%;
   height: 100%;
+  background-color: pink;
+  border-radius: 10px;
 }
 
 .ingredients-container {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   width: 70vw;
   min-height: 30vh;
-  background-color: lime;
+  background-color: transparent;
+  color: #0b3f0b;
+  margin-bottom: 2vh;
+  border: solid 2px;
+  border-radius: 10px;
+  padding: 2vh 4vw;
+}
+
+.ingredients-title, .preparation-title, .ingredients-quantity, .ingredients-unit, .ingredients-name, .new-ingredient {
+  text-align: left;
+  color: #0b3f0b;
+}
+
+.ingredients-title {
+  font-size: 1.2em;
+  margin-top: 0;
   margin-bottom: 2vh;
 }
 
-.ingredients-title, .preparation-title {
-  text-align: left;
+.instruction-text {
+  color: #0b3f0b;
+  margin: 0;
 }
 
-.preparation-container, .preparation-title {
+.preparation-container {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   min-height: 30vh;
+  background-color: transparent;
+  color: #0b3f0b;
   width: 70vw;
-  background-color: magenta;
+  margin-bottom: 2vh;
+  border: solid 2px;
+  border-radius: 10px;
+  padding: 2vh 4vw;
+  overflow-y: scroll;
+}
+
+.preparation-title {
+  font-size: 1.2em;
+  margin-bottom: 2vh;
+}
+
+.loading-svg-container {
+  width: 40vw;
+  height: 20vh;
+}
+
+.loading-svg-container img {
+  width: 100%;
+  height: 100%;
 }
 
 .copyright-text {

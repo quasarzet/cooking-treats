@@ -15,7 +15,7 @@
         <img src="styles/images/logo.png" alt="Logo">
     </div>
     <div class="message-container">
-        <p class="text">Welcome to Cook's Treat. Where you</br>will find hundreds of delicious recipes.</p>
+        <p class="welcome-text text">Welcome to Cook's Treat. Where you will find hundreds of delicious recipes.</p>
     </div>
     <div class="input-container">
         <input class="requested-recipe" type="text" placeholder="What's on your mind?"><button class="button-recipe"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 452.11 457.91">
@@ -61,20 +61,13 @@
 
     <!-- RESULTS OF THE QUERY -->
     <div class="results-container"> 
-        <!-- <div class="result-image-container">
-            <img src="styles/images/beef-sunday-roast.jpg" alt="">
-        </div>
-        <div class="result-recipe-container">
-            <p class="result-recipe-text text">Name of the Dish</p>
-            <p class="result-recipe-text text">Preparation Time:</p>
-            <p class="result-recipe-text text">Description</p>
-            <p class="result-recipe-text text">Yields:</p>
-        </div> -->
     </div>
+</div>
 
     <!-- OVERLAY WITH THE RECIPE RESULTS -->
-    <div class="overlay">
-        <div class="close-button-container"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520.71 520.71">
+    <div class="overlay" hidden>
+        <div class="close-button-container">
+            <svg class = "close-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520.71 520.71">
             <defs>
               <style>
                 .a {
@@ -87,28 +80,31 @@
         </div>
         <div class="recipe-container">
             <div class="recipe-title-container">
-                <p class="recipe-title text">Recipe Title</p>
-                <p class="recipe-country text">World</p>
+                <p class="recipe-title text"></p>
             </div>
                 <div class="recipe-photo-container">
-                    <img src="" alt="">
+                    <img class="recipe-image" src="" alt="">
                 </div>
                 <div class="ingredients-container">
                     <p class="ingredients-title text">Ingredients:</p>
-                    <p class="ingredients-items"></p>
+                    <p class="each-ingredient"></p>
                 </div>
                 <div class="preparation-container">
                     <p class="preparation-title text">Preparation:</p>
+                    <p class="preparation-text"></p>
                 </div>
         </div>
+    </div>
+
+    <div class="loading-svg-container" hidden>
+        <img src="styles/images/loading.svg" alt="Loading Animation">
     </div>
 
     <div class="copyright-container">
         <p class="copyright-text">All rights reserved - 2021</p>
     </div>
 
-    
-</div>
+
 
 
 

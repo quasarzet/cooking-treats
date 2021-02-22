@@ -1,7 +1,13 @@
+@font-face {
+    font-family: Sarala;
+    src: url('fonts/Sarala-Regular.ttf');
+}
+
 html,body{
     margin: 0;
     scroll-behavior: smooth;
     width: 100vw;
+    min-height: 100vh;
     box-sizing: border-box;
     overflow-x: hidden;
 }
@@ -9,6 +15,12 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: url('images/mobile-background.png') no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.gray-background{
+    background:rgb(203, 204, 203);
 }
 .body-wrapper{
     box-sizing: border-box;
@@ -16,10 +28,9 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: url('images/mobile-background.png') no-repeat;
-    background-position: center;
-    background-size: cover;
+    justify-content: space-between;
     width: 100%;
+    min-height: 100vh;
 }
 .logo-container{
     width: 40vw;
@@ -30,31 +41,31 @@ body{
     width: 100%;
     height: 100%;
 }
-.welcome-text{
+.welcome-text, .no-result-message{
+    margin: 5vh 0;
     width: 80vw;
-}
-.text{
-    font-family: 'baskerville old face';
-    font-size: 1.5em;
     text-align: center;
+    font-family: 'Times New Roman';
+    font-size: 1.7em;
     color: rgb(11, 63, 11);
-    margin: 0;
 }
 .input-container{
     display: inline-flex;
     padding: 0;
     margin: 3vh 0;
     align-items: center;
+    justify-content: center;
 }
 .input-container input{
-    width: 50vw;
+    width: 60vw;
     height: 5vh;
     border-radius: 25px;
 }
 input::placeholder{
     text-align: center;
     color: rgb(163, 163, 163);
-    padding-right: 5vw;
+    font-size: 1em;
+    padding-right: 4vw;
 }
 input{
     text-align: center;
@@ -72,79 +83,30 @@ input{
     width: 5vw;
     height: 5vh;
 }
-.popular-item{
-    width: 60vw;
-    height: 30vh;
-    border-radius: 5px;
-    margin: 2vh 0;
-}
-.popular-item img{
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
-}
-.third-popular-item-container, .fourth-popular-item-container{
-    display: none;
-}
-
-
-// QUERY RESULTS
-.results-container{
-    width: 70vw;
-    margin: 2vh 0;
-    padding: 0;
-    border-radius: 10px;
-    box-sizing: border-box;
-    overflow: hidden;
-}
-.result-image-container{
-    width: 70vw;
-    height: 30vh;
-    border-radius: 10px;
+.input-message-container{
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
-.result-image-container img{
-    width: 100%;
-    height: 100%;
-    border-radius: 10px 10px 0 0;
-}
-.result-recipe-container{
-    box-sizing: border-box;
-    position: relative;
-    padding: 2vh 2vw;
-    background-color: rgb(113, 184, 113);
-    width: 70vw;
-    height: 20vh;
-    border-radius: 0 0 10px 10px;
-}
-.result-recipe-text{
-    text-align: left;
-    color: white;
-    font-family: 'verdana';
-    font-size: 1em;
-}
-.result-recipe-text:first-of-type{
-    font-size: 1.5em;
-    margin-bottom: 1vh;
+.no-result-message{
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 2vh 4vw;
+    display: block;
 }
 
-
-
-
-// CLASSES FOR CONTENT THAT COMES FROM JAVASCRIPT
+// RESULTS THAT COMES FROM JAVASCRIPT
 .new-recipe-container{
-    width: 70vw;
-    height: 50vh;
-    margin: 2vh 0;
+    width: 80vw;
+    height: 55vh;
+    margin: 3vh 0;
     padding: 0;
     border-radius: 10px;
     box-sizing: border-box;
     overflow: hidden;
 }
 .new-recipe-image{
-    width: 70vw;
+    width: 80vw;
     height: 30vh;
     border-radius: 10px 10px 0 0;
     display: flex;
@@ -159,34 +121,41 @@ input{
 .new-recipe-text-container{
     box-sizing: border-box;
     position: relative;
-    padding: 2vh 2vw;
-    background-color: rgb(113, 184, 113);
-    width: 70vw;
-    height: 20vh;
+    padding: 2vh 4vw;
+    background-color: rgb(65, 122, 65);
+    width: 80vw;
+    height: 25vh;
     margin: 0;
     border-radius: 0 0 10px 10px;
+    font-family: 'Verdana';
+    color: white;
+    text-align: left;
+    overflow: hidden;
 }
 .new-recipe-title{
-    text-align: left;
-    color: white;
-    font-family: 'verdana';
-    font-size: 1em;
-    margin-top: 0;
-    width: 60vw;
+    font-size: 1.1em;
+    width: 70vw;
+    margin: 0;
+    padding: 0.5vh 1vw;
+    padding-top: 0;
+    font-weight: 700;
+    font-family: 'Sarala';
 }
-.new-recipe-text{
+.new-recipe-text, .new-recipe-text-description{
+    font-family: "Sarala";
     text-align: left;
-    color: white;
-    font-family: 'verdana';
     font-size: 0.8em;
     width: 70vw;
-    padding: 1vh 2vw;
+    padding: 1vh 1vw;
+    margin: 0;
+}
+.new-recipe-text-description{
+    max-height: 7vh;
+    overflow: hidden;
 }
 .new-recipe-hidden{
     display: none;
 }
-
-
 
 // OVERLAY
 .overlay{
@@ -212,12 +181,13 @@ input{
     height: 6vw;
     position: fixed;
     left: 88%;
-    top: 1%;
+    top: 2%;
 }
 .recipe-container{
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: rgb(11, 63, 11);
 }
 .recipe-title-container{
     margin-top: 2vh;
@@ -225,19 +195,21 @@ input{
     width: 60vw;
 }
 .recipe-title{
-    font-size: 1.2em;
+    font-size: 1.5em;
+    text-align: center;
+    font-family: 'Times New Roman';
+    font-weight: 700;
+    margin: 0;
 }
 .recipe-photo-container{
-    width: 45vw;
-    height: 20vh;
-    background-color: pink;
+    width: 60vw;
+    height: 25vh;
     border-radius: 10px;
     margin-bottom: 2vh;
 }
 .recipe-photo-container img{
     width: 100%;
     height: 100%;
-    background-color: pink;
     border-radius: 10px;
 }
 .ingredients-container{
@@ -245,44 +217,34 @@ input{
     width: 70vw;
     min-height: 30vh;
     background-color: transparent;
-    color: rgb(11, 63, 11);
     margin-bottom: 2vh;
     border: solid 2px;
     border-radius: 10px;
     padding: 2vh 4vw;
 }
-.ingredients-title, .preparation-title, .ingredients-quantity, .ingredients-unit, .ingredients-name, .new-ingredient {
+.ingredients-title, .preparation-title{
     text-align: left;
-    color: rgb(11, 63, 11);
-}
-.ingredients-title{
-    font-size: 1.2em;
+    font-family: 'Times New Roman';
+    font-size: 1.5em;
+    font-weight: 700;
     margin-top: 0;
     margin-bottom: 2vh;
 }
-.instruction-text{
-    color: rgb(11, 63, 11);
-    margin: 0;
-}
-
 .preparation-container{
     box-sizing: border-box;
     min-height: 30vh;
     background-color: transparent;
-    color: rgb(11, 63, 11);
     width: 70vw;
     margin-bottom: 2vh;
     border: solid 2px;
     border-radius: 10px;
     padding: 2vh 4vw;
-    overflow-y: scroll;
 }
-.preparation-title{
-    font-size: 1.2em;
-    margin-bottom: 2vh;
+.instruction-text, .ingredients-quantity, .ingredients-unit, .ingredients-name, .new-ingredient{
+    font-family: 'Sarala';
+    font-size: 0.9em;
+    margin: 0;
 }
-
-
 .loading-svg-container{
     width: 40vw;
     height: 20vh;
@@ -291,10 +253,116 @@ input{
     width: 100%;
     height: 100%;
 }
+.footer-container{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.footer-svg{
+    width: 8vw;
+    padding: 5vw;
+}
 
 
-.copyright-text{
-    font-size: 1em;
-    text-align: center;
-    color: #0c1806;
+// MEDIA QUERY FOR TABLETS
+@media all and (min-width: 500px){
+    body{
+        background-position: 0 75%;
+    }
+    .logo-container{
+        width: 28vw;
+        height: 30vw;
+    }
+    .welcome-text, .no-result-message{
+        width: 50vw;
+    }
+    .input-container{
+        width: 50vw;
+    }
+    input::placeholder{
+        font-size: 0.8em;
+    }
+    input{
+        font-size: 1.2em;
+    }
+    .button-recipe svg{
+        width: 4vw;
+        height: 4vh;
+        margin-top: 0.5vh;
+        margin-left: 1.5vw;
+    }
+    // RESULTS THAT COMES FROM JAVASCRIPT
+    .new-recipe-container{
+        width: 60vw;
+        font-size: 130%;
+    }
+    .new-recipe-image{
+        width: 60vw;
+    }
+    .new-recipe-text-container{
+        width: 60vw;
+    }
+    .new-recipe-title, .new-recipe-text, .new-recipe-text-description{
+        width: 50vw;
+    }
+    // OVERLAY
+    .recipe-container{
+        font-size: 130%;
+    }
+    .recipe-photo-container{
+        width: 40vw;
+    }
+    // FOOTER
+    .footer-svg{
+        width: 6vw;
+        padding: 4vw;
+    }
+}
+
+
+// MEDIA QUERY FOR DESKTOPS
+@media all and (min-width: 768px){
+
+    .logo-container{
+        width: 25vw;
+        height: 27vw;
+    }
+    input::placeholder{
+        padding-right: 1vw;
+    }
+}
+
+// MEDIA QUERY FOR BIG SCREENS
+@media all and (min-width: 1024px){
+
+    .logo-container{
+        width: 15vw;
+        height: 17vw;
+    }
+    .welcome-text{
+        width: 40vw;
+    }
+    .input-container{
+        width: 35vw;
+    }
+    input{
+        padding-left: 3vw;
+    }
+    input::placeholder{
+        padding-right: 0vw;
+        padding-left: 1vw;
+    }
+    .button-recipe {
+        margin-left:-5vw;
+    }
+    .button-recipe svg{
+        margin-left: 0;
+    }
+    .footer-svg{
+        width: 3vw;
+        padding: 2vw;
+    }
+
 }

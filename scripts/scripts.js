@@ -31,9 +31,8 @@ function writeRecipeDetails(recipeDetails){
     const eachIngredient = document.querySelector('.each-ingredient');
     const ingredientsArray = recipeDetails.sections[0].components;
     const instructionsArray = recipeDetails.instructions;
-    const preparationContainer = document.querySelector('.preparation-container');
+    const preparationContainer = document.querySelector('.preparation-text');
    
-    
     // ITERATES OVER THE INGREDIENTS ARRAY
     ingredientsArray.forEach(element =>{
         // APPENDS THE QUANTITY FOR EACH INGREDIENT
@@ -75,26 +74,28 @@ function writeRecipeDetails(recipeDetails){
         newLineInstructions.className = 'instructions-br';
         preparationContainer.appendChild(newLineInstructions);
     })
-
     recipeTitle.textContent = recipeDetails.name;
     recipeImage.src = recipeDetails.thumbnail_url;
     recipeImage.alt = recipeDetails.name;
 }
 
 
-
-// // WRITES THE INFORMATION TO THE DOM
+// // WRITES THE RECIPE RESULTS TO THE DOM
 function writeRecipes(totalRecipes, extractedId,  extractedDishImage,extractedNameOfDish, extractedCookingTime, extractedDescription , extractedYield){
-    // CREATES THE CONTAINER FOR EACH RECIPE AND ASSIGNS IT A CLASS
-    const newRecipe = document.createElement('div');
-    newRecipe.className = "new-recipe-container";
-    const allRecipesContainer = document.querySelector('.results-container');
-    allRecipesContainer.appendChild(newRecipe);
     const overlayContainer = document.querySelector('.overlay');
     let ingredientsContainer = document.querySelector('.each-ingredient');
     const preparationContainer = document.querySelector('.preparation-text');
     const closingButton = document.querySelector('.close-button');
     const bodyElement = document.querySelector('.body-wrapper');
+    const body = document.body;
+
+    // CREATES THE CONTAINER FOR EACH RECIPE AND ASSIGNS IT A CLASS
+    const newRecipe = document.createElement('div');
+    newRecipe.className = "new-recipe-container";
+    const allRecipesContainer = document.querySelector('.results-container');
+    allRecipesContainer.appendChild(newRecipe);
+
+    body.classList.add('gray-background');
 
     // WHEN ANY RECIPE RESULT IS CLICKED IT SHOWS THE OVERLAY WITH THE RECIPE DETAILS
     newRecipe.addEventListener('click', ()=>{
@@ -103,39 +104,23 @@ function writeRecipes(totalRecipes, extractedId,  extractedDishImage,extractedNa
             url: 'https://tasty.p.rapidapi.com/recipes/detail',
             params: {id: extractedId},
             headers: {
-              'x-rapidapi-key': '22ed3ce2f2msh965dd43e2495ebdp1b92c8jsn734b75c346c8',
+              'x-rapidapi-key': '1e078aca86msh12c47f16c5a4e14p1f3185jsnc87189a97787',
               'x-rapidapi-host': 'tasty.p.rapidapi.com'
             }
           };
           axios.request(recipeDetailsRequest).then(function (recipeResponse) {
               const recipeDetails = recipeResponse.data;
               writeRecipeDetails(recipeDetails);
-              
           }).catch(function (error) {
               console.error("There is something wrong with the recipe details " + error);
           });
-            
             bodyElement.classList.add('body-scroll-hide');
             overlayContainer.hidden = false;
     })
 
     // DETECTS A CLICK AND CLOSES THE OVERLAY
     closingButton.onclick = ()=>{
-        // DELETES ALL THE CONTENT IN THE INGREDIENTS CONTAINER
-        // allIngredients.forEach(ingredient=>{
-        //     ingredientsContainer.removeChild(ingredient);
-        // });
-        // ingredientsBr.forEach(breakingLineIngredients=>{
-        //     ingredientsContainer.removeChild(breakingLineIngredients);
-        // });
         ingredientsContainer.innerHTML = '';
-        // DELETES ALL THE CONTENT IN THE PREPARATION CONTAINER
-        // allPreparation.forEach(instruction=>{
-        //     preparationContainer.removeChild(instruction);
-        // });
-        // instructionsBr.forEach(breakingLineInstructions=>{
-        //     preparationContainer.removeChild(breakingLineInstructions);
-        // });
         preparationContainer.innerHTML = '';
         overlayContainer.hidden = true;
         bodyElement.classList.remove('body-scroll-hide');
@@ -163,31 +148,29 @@ function writeRecipes(totalRecipes, extractedId,  extractedDishImage,extractedNa
     newRecipeText.appendChild(recipeTitle);
 
     // CREATES A PARAGRAPH FOR THE COOKING TIME OF EACH RECIPE AND ASSIGNS IT A CLASS
-    const cookingTimeTitle = document.createElement('p');
-    cookingTimeTitle.textContent = `${extractedCookingTime}`;
-    newRecipeText.appendChild(cookingTimeTitle);
     // CHECKS IF THE COMING VALUE IS NULL AND ASSIGNS IT A CLASS THAT HIDES IT
-    if(extractedCookingTime !== null){
+    if(extractedCookingTime && extractedCookingTime !== null && extractedCookingTime !== "undefined" && extractedCookingTime!=="undefined"){
+        const cookingTimeTitle = document.createElement('p');
+        cookingTimeTitle.textContent = `${extractedCookingTime}`;
+        newRecipeText.appendChild(cookingTimeTitle);
         cookingTimeTitle.className = 'new-recipe-text';
-    }else{
-        cookingTimeTitle.className = 'new-recipe-hidden';
     }
 
     // CREATES A PARAGRAPH FOR THE DESCRIPTION OF EACH RECIPE AND ASSIGNS IT A CLASS
-    const recipeDescription = document.createElement('p');
-    recipeDescription.textContent = `${extractedDescription}`;
-    newRecipeText.appendChild(recipeDescription);
-    if(extractedDescription !== null){
-        recipeDescription.className = 'new-recipe-text';
-    }else{
-        recipeDescription.className = 'new-recipe-hidden';
+    if(extractedDescription && extractedDescription !== null && extractedDescription !== "" && extractedDescription !== "undefined"){
+        const recipeDescription = document.createElement('p');
+        recipeDescription.textContent = `${extractedDescription}`;
+        newRecipeText.appendChild(recipeDescription);
+        recipeDescription.className = 'new-recipe-text-description';
     }
 
     // CREATES A PARAGRAPH FOR THE AMOUNT THE RECIPE YIELDS AND ASSIGNS IT A CLASS
-    const yieldText = document.createElement('p');
-    yieldText.textContent = `${extractedYield}`;
-    yieldText.className = 'new-recipe-text';   
-    newRecipeText.appendChild(yieldText);
+    if(extractedYield && extractedYield !== null && extractedYield !== "" && extractedYield !== "undefined"){
+        const yieldText = document.createElement('p');
+        yieldText.textContent = `${extractedYield}`;
+        yieldText.className = 'new-recipe-text';   
+        newRecipeText.appendChild(yieldText);
+    }
 }
 
 
@@ -225,45 +208,12 @@ let recipesLeft = totalRecipes - displayedRecipes;
 }
 
 
-//CHECKS IF IS THE FIRST SEARCH. IF NOT, ELIMINATES THE PREVIOUS CONTENT
-function newContent(numberOfSearch){
-    if(numberOfSearch < 1){
-        getRecipes();
-    }else{
-        const allRecipesContainer = document.querySelector('.results-container');
-        const newRecipe = document.querySelectorAll('.new-recipe-container');
-        newRecipe.forEach(element => {
-            allRecipesContainer.removeChild(element);
-        });
-        getRecipes();
-    }
+
+// SOME FUNCTION
+function someFunction(){
+    return;
 }
 
-
-// REQUESTS RECIPES
-function getRecipes(recipeOriginList){
-    const requestedRecipe = document.querySelector('.requested-recipe');
-    const recipeToSearch = requestedRecipe.value;
-    const recipes = {
-        method: 'GET',
-        url: 'https://tasty.p.rapidapi.com/recipes/list',
-        params:  {from: recipeOriginList, size: '20', tags: 'under_30_minutes', q:`'${recipeToSearch}'`},
-        headers: {
-          'x-rapidapi-key': '22ed3ce2f2msh965dd43e2495ebdp1b92c8jsn734b75c346c8',
-          'x-rapidapi-host': 'tasty.p.rapidapi.com'
-        }
-    };
-    console.log(recipeToSearch)
-    axios.request(recipes).then(function (response) {
-        const recipes = response.data;
-        console.log(recipes);
-        const totalRecipes = recipes.count;
-        extractRecipes(recipes, totalRecipes);
-        waitForMoreRecipes();
-    }).catch(function (error) {
-        console.error(`There's something wrong, ${error}`);
-    });
-}
 // CHECKS IF THE SCROLL IS GETTING TO THE END OF THE RESULTS AND REQUESTS MORE
 let recipeOriginList = 0;
 function waitForMoreRecipes(){
@@ -277,12 +227,83 @@ function waitForMoreRecipes(){
     });
 }
 
+
+// REQUESTS RECIPES
+function getRecipes(recipeOriginList){
+    const requestedRecipe = document.querySelector('.requested-recipe');
+    const recipeToSearch = requestedRecipe.value;
+    const recipes = {
+        method: 'GET',
+        url: 'https://tasty.p.rapidapi.com/recipes/list',
+        params:  {from: recipeOriginList, size: '20', tags: 'under_30_minutes', q:`'${recipeToSearch}'`},
+        headers: {
+          'x-rapidapi-key': '1e078aca86msh12c47f16c5a4e14p1f3185jsnc87189a97787',
+          'x-rapidapi-host': 'tasty.p.rapidapi.com'
+        }
+    };
+    console.log(recipeToSearch)
+    axios.request(recipes).then(function (response) {
+        const recipes = response.data;
+        console.log(recipes);
+        const totalRecipes = recipes.count;
+        if(totalRecipes > 0){
+            extractRecipes(recipes, totalRecipes);
+            waitForMoreRecipes();
+        }else{
+            const noResultsMessage = document.createElement('p');
+            noResultsMessage.textContent = "...We are sorry but there are no results for your search. Please try again with a more general term.";
+            const inputContainer = document.querySelector('.input-message-container');
+            inputContainer.appendChild(noResultsMessage);
+            noResultsMessage.classList = 'no-result-message';
+            const body = document.body;
+            body.classList.remove('gray-background');
+            window.removeEventListener('scroll', someFunction);
+            loadingSvg.hidden = true;
+            return;
+            
+        }
+    }).catch(function (error) {
+        console.error(`There's something wrong, ${error}`);
+    });
+}
+
+
+
+//CHECKS IF IS THE FIRST SEARCH. IF NOT, ELIMINATES THE PREVIOUS CONTENT
+let numberOfSearch = 0;
+function newContent(numberOfSearch){
+    console.log(numberOfSearch);
+    const allRecipesContainer = document.querySelector('.results-container');
+    let allRecipes = document.querySelectorAll('.new-recipe-container');
+    let noResultsMessage = document.querySelector('.no-result-message');
+    const inputContainer = document.querySelector('.input-message-container');
+    
+    if(numberOfSearch<1){
+        getRecipes();
+    }
+
+    if(noResultsMessage && numberOfSearch>0){
+        inputContainer.removeChild(noResultsMessage);
+        getRecipes();
+    };
+    
+    if(allRecipes && numberOfSearch>0){
+        allRecipes.forEach(element=>{
+            element.innerHTML = '';
+            element.hidden = true;
+        });
+        window.removeEventListener('scroll', someFunction);
+        getRecipes();
+    };   
+}
+    
+
 // DETECTS A CLICK AND EXECUTES THE FUNCTION THAT CHECKS IF IT IS THE FIRST SEARCH
 const requestButton = document.querySelector('.button-recipe');
-let numberOfSearch = 0;
 requestButton.addEventListener('click', ()=>{
     newContent(numberOfSearch);
     numberOfSearch++;
+    
 });
 // DETECTS AN ENTER AND EXECUTES THE FUNCTION THAT CHECKS IF IT IS THE FIRST SEARCH
 const inputSearch = document.querySelector('.requested-recipe');
@@ -292,8 +313,3 @@ inputSearch.addEventListener('keyup', (pressed)=>{
         numberOfSearch++;
     }
 })
-
-
-
-
-

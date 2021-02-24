@@ -7,7 +7,7 @@ html, body {
   margin: 0;
   scroll-behavior: smooth;
   width: 100vw;
-  min-height: 100vh;
+  min-height: 88vh;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   overflow-x: hidden;
@@ -456,6 +456,11 @@ input {
 }
 
 @media all and (min-width: 1024px) {
+  .body-wrapper {
+    background: url(images/background.jpg);
+    background-position: center;
+    background-size: cover;
+  }
   .logo-container {
     width: 15vw;
     height: 17vw;
@@ -490,6 +495,49 @@ input {
   }
   .button-recipe svg {
     margin-left: 0;
+  }
+  .results-container {
+    width: 70vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-flow: row wrap;
+        flex-flow: row wrap;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .new-recipe-container {
+    width: 20vw;
+  }
+  .new-recipe-image {
+    width: 20vw;
+  }
+  .new-recipe-text-container {
+    width: 20vw;
+    padding: 2vh 1vw;
+  }
+  .overlay {
+    width: 60vw;
+  }
+  .new-recipe-title, .new-recipe-text, .new-recipe-text-description {
+    width: 100%;
+  }
+  .close-button-container {
+    width: 3vw;
+    height: 3vw;
+    position: fixed;
+    left: 95%;
+    top: 2%;
+  }
+  .recipe-photo-container {
+    width: 30vh;
+  }
+  .ingredients-container, .preparation-container {
+    width: 40vw;
   }
   .footer-svg {
     width: 3vw;

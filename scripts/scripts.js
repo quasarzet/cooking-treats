@@ -104,7 +104,7 @@ function writeRecipes(totalRecipes, extractedId,  extractedDishImage,extractedNa
             url: 'https://tasty.p.rapidapi.com/recipes/detail',
             params: {id: extractedId},
             headers: {
-              'x-rapidapi-key': '1e078aca86msh12c47f16c5a4e14p1f3185jsnc87189a97787',
+              'x-rapidapi-key': 'ebad24bb18mshba622518c6a5df3p12f576jsn35087cfbfaad',
               'x-rapidapi-host': 'tasty.p.rapidapi.com'
             }
           };
@@ -216,7 +216,7 @@ function someFunction(){
 
 // CHECKS IF THE SCROLL IS GETTING TO THE END OF THE RESULTS AND REQUESTS MORE
 let recipeOriginList = 0;
-function waitForMoreRecipes(){
+const waitForMoreRecipes = function waitForMoreRecipes(){
     window.addEventListener('scroll', ()=> {
         if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 10 && ready){
             ready = false;
@@ -237,7 +237,7 @@ function getRecipes(recipeOriginList){
         url: 'https://tasty.p.rapidapi.com/recipes/list',
         params:  {from: recipeOriginList, size: '20', tags: 'under_30_minutes', q:`'${recipeToSearch}'`},
         headers: {
-          'x-rapidapi-key': '1e078aca86msh12c47f16c5a4e14p1f3185jsnc87189a97787',
+          'x-rapidapi-key': 'ebad24bb18mshba622518c6a5df3p12f576jsn35087cfbfaad',
           'x-rapidapi-host': 'tasty.p.rapidapi.com'
         }
     };
@@ -248,8 +248,9 @@ function getRecipes(recipeOriginList){
         const totalRecipes = recipes.count;
         if(totalRecipes > 0){
             extractRecipes(recipes, totalRecipes);
-            waitForMoreRecipes();
+            waitForMoreRecipes;
         }else{
+            
             const noResultsMessage = document.createElement('p');
             noResultsMessage.textContent = "...We are sorry but there are no results for your search. Please try again with a more general term.";
             const inputContainer = document.querySelector('.input-message-container');
@@ -280,21 +281,22 @@ function newContent(numberOfSearch){
     
     if(numberOfSearch<1){
         getRecipes();
+    }else{
+        if(document.body.contains(noResultsMessage)){
+            inputContainer.removeChild(noResultsMessage);
+            getRecipes();
+            console.log("results container is here")
+        }
+        if(document.body.contains(document.querySelector('.new-recipe-container'))){
+            allRecipes.forEach(element=>{
+                element.innerHTML = '';
+                element.hidden = true;
+                });
+                window.removeEventListener('scroll', someFunction);
+                getRecipes();
+                console.log("recipes result is here")
+        }
     }
-
-    if(noResultsMessage && numberOfSearch>0){
-        inputContainer.removeChild(noResultsMessage);
-        getRecipes();
-    };
-    
-    if(allRecipes && numberOfSearch>0){
-        allRecipes.forEach(element=>{
-            element.innerHTML = '';
-            element.hidden = true;
-        });
-        window.removeEventListener('scroll', someFunction);
-        getRecipes();
-    };   
 }
     
 
